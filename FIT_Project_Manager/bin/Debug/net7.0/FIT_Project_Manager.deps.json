@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "FIT_Project_Manager/1.0.0": {
+        "runtime": {
+          "FIT_Project_Manager.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FIT_Project_Manager/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
