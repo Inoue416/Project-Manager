@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model FIT_Project_Manager.Models.HomeViewModel
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <h2>@Model.Name</h2>
+    <h2>@Model.Id</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
