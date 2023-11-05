@@ -1,43 +1,50 @@
 version: '3'
 
 services:
-  webserver: 
-    build:
-      context: ./
-      dockerfile: Dockerfile
-
-    image: webserver
-    container_name: webserver
-    environment:
-      - TZ=Asia/Tokyo
-    # 開発用
-    ports:
-      - 8000:8000
-    # デプロイ用 (最終的にNginxで外部に公開したい。)
-    # ports:
-    #   - 8080:80
-    volumes:
-      # デプロイ用
-      # - ./nginx/default:/etc/nginx/sites-available/default
-      - ./FIT_Project_Manager:/FIT_Project_Manager
-    stdin_open: true
+  # webserver: 
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile
+  #   image: webserver
+  #   container_name: webserver
+  #   environment:
+  #     - TZ=Asia/Tokyo
+  #   # 開発用
+  #   ports:
+  #     - 8000:8000
+  #   # デプロイ用 (最終的にNginxで外部に公開したい。)
+  #   # ports:
+  #   #   - 8080:80
+  #   volumes:
+  #     # デプロイ用
+  #     # - ./nginx/default:/etc/nginx/sites-available/default
+  #     - ./FIT_Project_Manager:/FIT_Project_Manager
+  #   stdin_open: true
 
   db:
+    # build: 
+    #   context: ./DB
+    #   dockerfile: Dockerfile
+    #   args:
+    #     PSQL_DB: ${POSTGRES_DB}
+    #     PSQL_USER: ${POSTGRES_USER}
+
+    # image: dbserver
     image: postgres:latest
     container_name: "db"
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
-    command: tail -f /dev/null
+      - TZ=Asia/Tokyo
     ports:
       - "15432:5432"
-    depends_on:
-      - webserver
+    # depends_on:
+    #   - webserver
     
     volumes:
-      - ./FITDB:/var/lib/postgresql/data
-      - ./FITDB:/docker-entrypoint-initdb.d
+      - ./DB/FITDB:/var/lib/postgresql/data
+      - ./DB/scripts:/docker-entrypoint-initdb.d
 
 volumes:
   sampledb:
