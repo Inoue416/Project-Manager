@@ -8,19 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/Users/inoueyuya/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
+      "projectUniqueName": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
       "projectName": "FIT_Project_Manager",
-      "projectPath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/FIT_Project_Manager/obj/",
+      "projectPath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
+      "packagesPath": "/Users/inoueyuya/.nuget/packages/",
+      "outputPath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/Users/inoueyuya/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -62,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.402/RuntimeIdentifierGraph.json"
       }
     }
   }

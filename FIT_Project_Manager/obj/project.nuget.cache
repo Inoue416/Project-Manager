@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bXoVpDQm5xgCEev0rK8MQ40rCYg5CGzYtHpqVSHgNEdpAvcQIMjcxgwWlHOQyFBFkWPDvP+Zocq3vihLr+AFsA==",
+  "dgSpecHash": "HbZp5qKnJ+cZShtAOzhcTgy+W50z7fqXwFu2FfCEuTytcHDwsq9jGMccSPr3Kx5xsU8HqIsS75HJcpA2zmWBKg==",
   "success": true,
-  "projectFilePath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
+  "projectFilePath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
