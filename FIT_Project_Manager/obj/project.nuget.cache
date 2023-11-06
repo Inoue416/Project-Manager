@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bXoVpDQm5xgCEev0rK8MQ40rCYg5CGzYtHpqVSHgNEdpAvcQIMjcxgwWlHOQyFBFkWPDvP+Zocq3vihLr+AFsA==",
+  "dgSpecHash": "7AbLvwdEO+yNDq0LN/1fqmv4MFSmWwyizK3zgzHBXioef+uKDzwqDoLUxM10rP1egCcuoAGlQFFzHNlD6+zfzQ==",
   "success": true,
-  "projectFilePath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\FIT_Project_Manager.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yuyat\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\yuyat\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512"
+  ],
   "logs": []
 }

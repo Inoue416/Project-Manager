@@ -3,7 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using FIT_Project_Manager.Models;
 // TODO: 後にSQLの処理を行うクラスを別で作りたい
 using System.Linq;
-using System.Data.SqlClient;
+using Npgsql;
+using Microsoft.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
+using System.Data;
+using System.Transactions;
 
 namespace FIT_Project_Manager.Controllers;
 
@@ -16,23 +20,49 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public static string GetDBConnectInfo()
     {
-        string db_contname = Environment.GetEnvironmentVariable("POSTGRES_DB");
+        string db_contname = Environment.GetEnvironmentVariable("DB_CONTNAME");
+        string db_name = Environment.GetEnvironmentVariable("POSTGRES_DB");
         string db_user = Environment.GetEnvironmentVariable("POSTGERS_USER");
         string db_password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
-        // string constr = @"Data Source=192.168.0.1;Initial Catalog=iPentecSandBox;Connect Timeout=60;Persist Security Info=True;User ID=sa;Password=saPassword";
-        string sql = $@"
-            SELECT 
-                id
-                ,name
-            FROM
-                users;
-        ";
+        string db_port = Environment.GetEnvironmentVariable("POSTGRES_PORT");
+        string connect_query = $"Server={db_contname};Database={db_name};Port={db_port};User ID={db_user};Password={db_password};Enlist=true";
+        return connect_query;
+    }
+
+    public IActionResult Index()
+    {
+        string user_name;
+        int user_id;
+        using (TransactionScope ts = new TransactionScope())
+        {
+            using (NpgsqlConnection connect = new NpgsqlConnection(GetDBConnectInfo()))
+            {
+                connect.Open();
+                string cmd = $@"
+                    SELECT 
+                        id
+                        ,name
+                    FROM
+                        users
+                    WHERE
+                        id == 1;
+                ";
+                DataTable dt = new DataTable();
+                var cmd_obj = new NpgsqlCommand(cmd, connect);
+                var data = new NpgsqlDataAdapter(cmd_obj);
+                data.Fill(dt);
+                user_name = $"{dt.Rows[0][1]}";
+                user_id = (int)dt.Rows[0][0];
+            }
+            ts.Complete();
+        }
+
         var viewModel = new HomeViewModel()
         {
-            Id=0,
-            Name=db_contname
+            Id=user_id,
+            Name=user_name
         };
         return View("~/Views/Home/Index.cshtml", viewModel);
     }

@@ -120,3 +120,6 @@ C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\refi
 C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\FIT_Project_Manager.pdb
 C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\FIT_Project_Manager.genruntimeconfig.cache
 C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\ref\FIT_Project_Manager.dll
+C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\bin\Debug\net7.0\Npgsql.dll
+C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\FIT_Project_Manager.csproj.AssemblyReference.cache
+C:\Users\yuyat\Desktop\Project-Manager\FIT_Project_Manager\obj\Debug\net7.0\FIT_Project_Manager.csproj.CopyComplete

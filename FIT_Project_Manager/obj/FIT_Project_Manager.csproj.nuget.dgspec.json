@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/FIT_Project_Manager/FIT_Project_Manager.csproj": {}
+    "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\FIT_Project_Manager.csproj": {}
   },
   "projects": {
-    "/FIT_Project_Manager/FIT_Project_Manager.csproj": {
+    "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\FIT_Project_Manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
+        "projectUniqueName": "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\FIT_Project_Manager.csproj",
         "projectName": "FIT_Project_Manager",
-        "projectPath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/FIT_Project_Manager/obj/",
+        "projectPath": "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\FIT_Project_Manager.csproj",
+        "packagesPath": "C:\\Users\\yuyat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yuyat\\Desktop\\Project-Manager\\FIT_Project_Manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\yuyat\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,6 +12,7 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
       - POSTGRES_DB
+      - POSTGRES_PORT
       - DB_CONTNAME
     # 開発用
     ports:
