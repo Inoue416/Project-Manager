@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Record Page";
+}
+<h1 class="mb-3"><u>今日の進捗</u></h1>
+<form method="post">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="Leave a title here" id="floatingInputTitle">
+        <label for="floatingInputTitle">タイトル</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" id="floatingContent" placeholder="Leave a content here" style="height: 300px"></textarea>
+        <label for="floatingContent">内容</label>
+    </div>
+  <button type="submit" class="btn btn-primary">提出</button>
+</form>
