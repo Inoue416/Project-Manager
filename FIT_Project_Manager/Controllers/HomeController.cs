@@ -9,6 +9,7 @@ using Microsoft.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Data;
 using System.Transactions;
+using System.ComponentModel;
 
 namespace FIT_Project_Manager.Controllers;
 
@@ -36,23 +37,52 @@ public class HomeController : Controller
         return connectionString;
     }
 
-    public async void GetAsyncUserData()
+    public class UserData
+    {
+        public string UserName { get; set; }
+        public int UserId { get; set; }
+    }
+    public async Task<List<UserData>> GetAsyncUserData()
     {
         string connectionString = GetDBConnectInfo();
         await using var dataSource = NpgsqlDataSource.Create(connectionString);
         await using var connection = await dataSource.OpenConnectionAsync();
+        await using var command = new NpgsqlCommand("SELECT id, name FROM users WHERE id = ($1)", connection)
+        {
+            Parameters = 
+            {
+                new() { Value = 1 }
+            }
+        };
+
+        List<UserData> user_data = new List<UserData>();
+
+        await using (var reader = await command.ExecuteReaderAsync())
+        {
+            while(await reader.ReadAsync())
+            {
+                string uname = reader.GetString("name");
+                int uid = int.Parse(reader.GetValue("id").ToString());
+                user_data.Add(new UserData() {UserName=uname, UserId=uid});
+            }
+        }
+        // for (int i=0; i < reader.FieldCount; i++)
+        // {
+        //     Console.WriteLine($"{reader[i]}");
+        // }
         Console.WriteLine("Success...");
+        return user_data;
     }
 
     public async Task<IActionResult> Index()
     {
-        GetAsyncUserData();   
+        List<UserData> user_data = await GetAsyncUserData();
         var viewModel = new HomeViewModel()
         {
-            Id=0,
-            Name="sample"
+            Id=user_data[0].UserId,
+            Name=user_data[0].UserName
         };
-        return View("~/Views/Home/Index.cshtml", viewModel);
+        return View("./Views/Home/Index.cshtml", viewModel);
     }
 
     public IActionResult Privacy()
