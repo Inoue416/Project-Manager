@@ -121,23 +121,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/inoueyuya/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
+      "projectUniqueName": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
       "projectName": "FIT_Project_Manager",
-      "projectPath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
-      "packagesPath": "/Users/inoueyuya/.nuget/packages/",
-      "outputPath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/",
+      "projectPath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/FIT_Project_Manager/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "/Users/inoueyuya/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -185,16 +181,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.402/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "キャッシュ ファイルの読み取りの問題 /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

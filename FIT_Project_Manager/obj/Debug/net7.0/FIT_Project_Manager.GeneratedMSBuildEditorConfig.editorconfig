@@ -9,37 +9,37 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FIT_Project_Manager
 build_property.RootNamespace = FIT_Project_Manager
-build_property.ProjectDir = /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/
+build_property.ProjectDir = /FIT_Project_Manager/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager
+build_property.MSBuildProjectDirectory = /FIT_Project_Manager
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/Home/Index.cshtml]
+[/FIT_Project_Manager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/Home/Privacy.cshtml]
+[/FIT_Project_Manager/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/Shared/Error.cshtml]
+[/FIT_Project_Manager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/FIT_Project_Manager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/_ViewImports.cshtml]
+[/FIT_Project_Manager/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/_ViewStart.cshtml]
+[/FIT_Project_Manager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/Views/Shared/_Layout.cshtml]
+[/FIT_Project_Manager/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1xgd8x0a57

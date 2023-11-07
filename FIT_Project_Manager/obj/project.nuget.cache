@@ -1,18 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qd/uB+FXY9nSlvUj4CdWXAVMg2E9ybsF6Hd/rDCzRHtun53d9YIkTid187biJHHwTyDiGtABudIYZDEv8QFA4A==",
+  "dgSpecHash": "P4oHBbTW041SbojqbRglBQyOBXF9yfq1ETOS21uPA2RiKTB0pgvPrnPTZkrlHHpHR29hku25xsGHMrjZuB37XA==",
   "success": true,
-  "projectFilePath": "/Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/FIT_Project_Manager.csproj",
+  "projectFilePath": "/FIT_Project_Manager/FIT_Project_Manager.csproj",
   "expectedPackageFiles": [
-    "/Users/inoueyuya/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "/Users/inoueyuya/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512"
+    "/root/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/root/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "キャッシュ ファイルの読み取りの問題 /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

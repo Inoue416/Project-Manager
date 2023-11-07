@@ -126,3 +126,5 @@ C:/Users/yuyat/Desktop/Project-Manager/FIT_Project_Manager/obj/Debug/net7.0/FIT_
 /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/bin/Debug/net7.0/Npgsql.dll
 /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/Debug/net7.0/FIT_Project_Manager.csproj.AssemblyReference.cache
 /Users/inoueyuya/Documents/docker-sample/FIT_Project_Manager/obj/Debug/net7.0/FIT_Project_Manager.csproj.CopyComplete
+/FIT_Project_Manager/bin/Debug/net7.0/Npgsql.dll
+/FIT_Project_Manager/obj/Debug/net7.0/FIT_Project_Manager.csproj.CopyComplete
