@@ -41,8 +41,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            <div class="flash-message-area justify-content-between @ViewData["ResponseClass"] mb-3" role="alert">
+            <div class="flash-message-area @ViewData["ResponseClass"] alert-dismissible fade show mb-3" role="alert">
                 <span class="text-center">@ViewData["ResponseMessage"]</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @RenderBody()
         </main>
