@@ -43,3 +43,8 @@ Disposeは明示的にインスタンスのメモリを解放できる。<br />
 # ViewDataについて
 Flaskの時のようにフラッシュメッセージを入れたかったのでこれを使うことでできた。<br />
 また、ViewDataの値が消えるタイミングはページの更新時。<br />
+
+# ViewData, ViewBag, TempDataの違い
+ViewData, ViewBagは主にターゲットのControllerからViewに渡され、リダイレクトなどの際は次のアクションへ渡ることがない。<br />
+TempDataはその時とその次までデータを保持する。<br />
+なのでフラッシュメッセージにはTempDataを使うようにした。<br />
