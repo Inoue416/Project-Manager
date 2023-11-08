@@ -1,3 +1,4 @@
+-- TODO: パスワードを追記する必要あり
 CREATE TABLE IF NOT EXISTS users (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name varchar(50) NOT NULL,

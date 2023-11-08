@@ -40,12 +40,12 @@ public class RecordController : Controller
         Console.WriteLine($"Response Message: {response.Message}");
         if (response.Flag)
         {
-            ViewData["ResponseMessage"] = "記録しました。";
-            ViewData["ResponseClass"] = "alert alert-success";
-            return View("./Views/Home/Index.cshtml");
+            TempData["ResponseMessage"] = "記録しました。";
+            TempData["ResponseClass"] = "alert alert-success";
+            return Redirect("/");
         }
-        ViewData["ResponseMessage"] = "エラーが発生しました。";
-        ViewData["ResponseClass"] = "alert alert-danger";
+        TempData["ResponseMessage"] = "エラーが発生しました。";
+        TempData["ResponseClass"] = "alert alert-danger";
         return View("./Views/Record/Index.cshtml", view_model);
     }
 

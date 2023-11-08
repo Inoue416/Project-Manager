@@ -15,7 +15,7 @@ WORKDIR /FIT_Project_Manager
 # RUN dotnet add package Ngpsql
 # CMD [ "dotnet", "add", "package", "Npgsql" ]
 
-ENTRYPOINT [ "dotnet", "watch" ]
+# ENTRYPOINT [ "dotnet", "watch" ]
 # ENTRYPOINT [ "dotnet", "add package Npgsql" ]
 
 # CMD [ "dotnet", "run" ]
