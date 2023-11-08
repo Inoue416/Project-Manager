@@ -1,15 +1,22 @@
 @{
     ViewData["Title"] = "Record Page";
 }
+
+@model FIT_Project_Manager.Models.RecordViewModel
 <h1 class="mb-3"><u>今日の進捗</u></h1>
-<form method="post">
+<form method="post" asp-action="RegisterRecord">
+    <div class="form-title-error-area text-danger"><span asp-validation-for="Title"></span></div>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder="Leave a title here" id="floatingInputTitle">
+        <input asp-for="Title" type="text" class="form-control" placeholder="Leave a title here" id="floatingInputTitle" value=@Model.Title>
         <label for="floatingInputTitle">タイトル</label>
     </div>
+    <div class="form-content-error-area text-danger"><span asp-validation-for="Content"></span></div>
     <div class="form-floating mb-3">
-        <textarea class="form-control" id="floatingContent" placeholder="Leave a content here" style="height: 300px"></textarea>
+        <textarea asp-for="Content" class="form-control" id="floatingContent" placeholder="Leave a content here" style="height: 300px">@Model.Content</textarea>
         <label for="floatingContent">内容</label>
     </div>
   <button type="submit" class="btn btn-primary">提出</button>
 </form>
+
+@* TODO: jQueryを用いてサニタイズする。フォーカスが外れたときにサニタイズするのが良さそう。 *@
+@* TODO: モーダルを入れる *@
