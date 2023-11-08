@@ -1,4 +1,5 @@
 .env
 *.sln
+.DS_Store
 
 FITDB
