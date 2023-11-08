@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../buildMultiTargeting/FIT_Project_Manager.props" />
-</Project>
