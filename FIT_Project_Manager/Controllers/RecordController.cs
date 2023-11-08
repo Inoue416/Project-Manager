@@ -15,7 +15,7 @@ public class RecordController : Controller
         _logger = logger;
     }
 
-    
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         RecordViewModel view_model = new RecordViewModel()
