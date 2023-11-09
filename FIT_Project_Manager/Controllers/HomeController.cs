@@ -18,16 +18,23 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
+        
+        return View("./Views/Home/Index.cshtml");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> SetSession()
+    {
         string userIdKey = SessionHandler.IdAccessKey;
         string usernameKey = SessionHandler.NameAccessKey;
         if (string.IsNullOrEmpty(SessionHandler.Get(HttpContext.Session, userIdKey)))
         {
-            SessionHandler.Set(HttpContext.Session, userIdKey, "0");
+            SessionHandler.Set(HttpContext.Session, userIdKey, "1");
+            SessionHandler.Set(HttpContext.Session, usernameKey, "井上優也");
         }
-        Console.WriteLine($"Before: {SessionHandler.Get(HttpContext.Session, userIdKey)}");
-        SessionHandler.ClearSession(HttpContext.Session);
-        Console.WriteLine($"After: {SessionHandler.Get(HttpContext.Session, userIdKey)}");
-        return View("./Views/Home/Index.cshtml");
+        Console.WriteLine($"UserID: {SessionHandler.Get(HttpContext.Session, userIdKey)}");
+        Console.WriteLine($"UserName: {SessionHandler.Get(HttpContext.Session, usernameKey)}");
+        return Redirect("/");
     }
 
 

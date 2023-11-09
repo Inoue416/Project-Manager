@@ -2,6 +2,18 @@
     ViewData["Title"] = "Home Page";
 }
 @model FIT_Project_Manager.Models.HomeViewModel
-<div class="text-center">
-    <h1 class="display-4">Welcome テストユーザー</h1>
-</div>
+@using FIT_Project_Manager.Sessionlib;
+    <div class="text-center">
+        @{
+            if(string.IsNullOrEmpty(SessionHandler.Get(Context.Session, SessionHandler.IdAccessKey)))
+            {
+                <h1><a asp-controller="Home" asp-action="SetSession">セッションをセット</a></h1>
+            }
+            else
+            {
+                <h1 class="display-4">
+                    Welcome @SessionHandler.Get(Context.Session, SessionHandler.NameAccessKey)
+                </h1>
+            }
+        }
+    </div>
