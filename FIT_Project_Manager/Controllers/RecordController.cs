@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FIT_Project_Manager.Models;
 using Microsoft.AspNetCore.Components.Web;
 using FIT_Project_Manager.SQLlib;
+using FIT_Project_Manager.Sessionlib;
 
 namespace FIT_Project_Manager.Controllers;
 
@@ -30,13 +31,12 @@ public class RecordController : Controller
     public async Task<IActionResult> RegisterRecord(RecordViewModel view_model)
     {
         // TODO: サニタイズを行う, トランザクションを入れたい
-        string cmd = "INSERT INTO record(title, content, content_kind) VALUES(($1), ($2), ($3))";
         List<string> values = new List<string>();
         values.Add(view_model.Title);
         values.Add(view_model.Content);
         values.Add("0");
         DataBaseHandler db_handler = new DataBaseHandler();
-        var response = await db_handler.InsertRecord(cmd, values);
+        var response = await db_handler.InsertRecord(values, Int32.Parse(SessionHandler.Get(HttpContext.Session, SessionHandler.IdAccessKey)));
         Console.WriteLine($"Response Message: {response.Message}");
         if (response.Flag)
         {

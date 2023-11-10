@@ -63,9 +63,11 @@ public class DataBaseHandler
         public bool Flag { get; set; }
         public string Message { get; set; }
     }
-    public async Task<Response> InsertRecord(string cmd, List<string> values) 
+    public async Task<Response> InsertRecord(List<string> values, int user_id) 
     {
         Response response = new Response();
+        string cmd_record = "INSERT INTO record(title, content, content_kind) VALUES(($1), ($2), ($3)) RETURNING id";
+        string cmd_record_has = "INSERT INTO record_has(user_id, record_id) VALUES(($1), ($2))";
         if (!await ConnectionDatabaseAsync())
         {
             response.Flag = false;
@@ -75,7 +77,8 @@ public class DataBaseHandler
         }
         try
         {
-            await using var command = new NpgsqlCommand(cmd, this.connection)
+            // Record
+            await using var command_record = new NpgsqlCommand(cmd_record, this.connection)
             {
                 Parameters = 
                 {
@@ -84,15 +87,34 @@ public class DataBaseHandler
                     new() { Value = Int32.Parse(values[2]) }
                 }
             };
-            if (await command.ExecuteNonQueryAsync() == -1)
+            var record_id = await command_record.ExecuteScalarAsync();
+            if (record_id == null)
             {
                 response.Flag = false;
                 response.Message = "Error Insert.";
             }
             else
             {
-                response.Flag = true;
-                response.Message = "Success Insert.";
+                // Record Has
+                await using var command_record_has = new NpgsqlCommand(cmd_record_has, this.connection)
+                {
+                    Parameters = 
+                    {
+                        // TODO: idを入れる
+                        new() { Value = user_id },
+                        new() { Value = record_id }
+                    }
+                };
+                if (await command_record_has.ExecuteNonQueryAsync() == -1)
+                {
+                    response.Flag = false;
+                    response.Message = "Error Insert.";
+                }
+                else
+                {
+                    response.Flag = true;
+                    response.Message = $"Success Insert {record_id}.";
+                }
             }
         }
         catch

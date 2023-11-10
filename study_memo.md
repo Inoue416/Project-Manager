@@ -48,3 +48,6 @@ Flaskの時のようにフラッシュメッセージを入れたかったので
 ViewData, ViewBagは主にターゲットのControllerからViewに渡され、リダイレクトなどの際は次のアクションへ渡ることがない。<br />
 TempDataはその時とその次までデータを保持する。<br />
 なのでフラッシュメッセージにはTempDataを使うようにした。<br />
+
+# INSERTした際に挿入したデータのIDを得る
+Npgsqlの場合、NpgsqlCommandのExecuteScalar()を使いましょう。
