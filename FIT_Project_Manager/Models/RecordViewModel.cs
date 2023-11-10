@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FIT_Project_Manager.Models;
 
-public class RecordViewModel
+public sealed class RecordViewModel
 {
     [Display(Name="タイトル")]
     [Required(ErrorMessage = "タイトルを入力してください。")]

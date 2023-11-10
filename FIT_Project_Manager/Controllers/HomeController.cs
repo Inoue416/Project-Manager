@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FIT_Project_Manager.Models;
 using FIT_Project_Manager.Sessionlib;
 using Microsoft.AspNetCore.Http;
+using FIT_Project_Manager.SQLlib;
 
 namespace FIT_Project_Manager.Controllers;
 
@@ -18,8 +19,24 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        
-        return View("./Views/Home/Index.cshtml");
+        HomeViewModel? view_model = new HomeViewModel();
+        DataBaseHandler db_handler = new DataBaseHandler();
+        if (SessionHandler.IsLogin(HttpContext.Session))
+        {
+            Console.WriteLine("Get Record Data.");
+            var response = await db_handler.GetTodayRecordDataAsync(
+                Int32.Parse(
+                    SessionHandler.Get(HttpContext.Session, SessionHandler.IdAccessKey)
+                )
+            );
+            view_model.RecordData = response.RecordData;
+        }
+        else
+        {
+            view_model.RecordData = null;
+        }
+        Console.WriteLine($"view model: {view_model.RecordData}");
+        return View("./Views/Home/Index.cshtml", view_model);
     }
 
     [HttpGet]

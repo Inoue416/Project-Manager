@@ -1,6 +1,9 @@
 
+using FIT_Project_Manager.Sessionlib;
+using Microsoft.Net.Http.Headers;
 using Microsoft.VisualBasic;
 using Npgsql;
+using Microsoft.AspNetCore.Http;
 namespace FIT_Project_Manager.SQLlib;
 
 public class DataBaseHandler
@@ -84,7 +87,7 @@ public class DataBaseHandler
             if (await command.ExecuteNonQueryAsync() == -1)
             {
                 response.Flag = false;
-                response.Message = "Insert Error.";
+                response.Message = "Error Insert.";
             }
             else
             {
@@ -95,40 +98,93 @@ public class DataBaseHandler
         catch
         {
             response.Flag = false;
-            response.Message = "Insert Error.";
+            response.Message = "Error Insert.";
         }
         CloseDatabaseAsync();
         return response;
     }
-    // public async Task<List<UserData>> GetAsyncUserData()
-    // {
-    //     string connectionString = GetDBConnectInfo();
-    //     await using var dataSource = NpgsqlDataSource.Create(connectionString);
-    //     await using var connection = await dataSource.OpenConnectionAsync();
-    //     await using var command = new NpgsqlCommand("SELECT id, name FROM users WHERE id = ($1)", connection)
-    //     {
-    //         Parameters = 
-    //         {
-    //             new() { Value = 1 }
-    //         }
-    //     };
 
-    //     List<UserData> user_data = new List<UserData>();
+    public class RecordData
+    {
+        public int Id { get; set; }
+        public string Title { get; set;}
+        public string Content { get; set;}
+    }
 
-    //     await using (var reader = await command.ExecuteReaderAsync())
-    //     {
-    //         while(await reader.ReadAsync())
-    //         {
-    //             string uname = reader.GetString("name");
-    //             int uid = int.Parse(reader.GetValue("id").ToString());
-    //             user_data.Add(new UserData() {UserName=uname, UserId=uid});
-    //         }
-    //     }
-    //     // for (int i=0; i < reader.FieldCount; i++)
-    //     // {
-    //     //     Console.WriteLine($"{reader[i]}");
-    //     // }
-    //     Console.WriteLine("Success...");
-    //     return user_data;
-    // }
+    public class ResponseRecordData : Response
+    {
+        public List<RecordData>? RecordData { get; set; }
+    }
+
+    public async Task<ResponseRecordData> GetTodayRecordDataAsync(int user_id)
+    {
+        ResponseRecordData response = new ResponseRecordData();
+        List<RecordData>? recordData = new List<RecordData>();
+        string cmd = """
+            SELECT * id, title, content
+            FROM record
+            WHERE id == 1;
+        """;
+        // string cmd = """
+        //     SELECT 
+        //         id, title, content
+        //     FROM record
+        //     WHERE record.id IN (
+        //         SELECT * FROM record_has
+        //         WHERE (
+        //             record_has.user_id == ($1)
+        //             AND
+        //             DATE_FORMAT(record_has.created_at, '%Y-%m-%d')
+        //             ==
+        //             DATE_FORMAT(now(), '%Y-%m-%d');
+        //         )
+        //     );
+        // """;
+        if (!await ConnectionDatabaseAsync())
+        {
+            response.Flag = false;
+            response.Message = "Cannot connected DB.";
+            response.RecordData = null;
+            CloseDatabaseAsync();
+            return response;
+        }
+        try
+        {
+            await using var command = new NpgsqlCommand(cmd, this.connection);
+            // {
+            //     Parameters = 
+            //     {
+            //         new() { Value = user_id },
+            //     }
+            // };
+            using (var reader = await command.ExecuteReaderAsync())
+            {
+                if (reader.Depth == 0)
+                {
+                    recordData = null;
+                }
+                else
+                {
+                    while(await reader.ReadAsync())
+                    {
+                        RecordData today_data = new RecordData();
+                        today_data.Id = reader.GetInt32(0);
+                        today_data.Title = reader.GetString(1);
+                        today_data.Content = reader.GetString(2);
+                        recordData.Add(today_data);
+                    }
+                }
+            }
+            response.Message = "Success Select.";
+            response.Flag = true;
+            response.RecordData = recordData;
+        }
+        catch
+        {
+            response.Message = "Error Select.";
+            response.Flag = false;
+            response.RecordData = null;
+        }
+        return response;
+    }
 }

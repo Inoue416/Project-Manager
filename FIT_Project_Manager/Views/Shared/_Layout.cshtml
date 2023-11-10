@@ -25,7 +25,7 @@
                         @using FIT_Project_Manager.Sessionlib;
                         @using Microsoft.AspNetCore.Http;
                         @{
-                            if (string.IsNullOrEmpty(SessionHandler.Get(Context.Session, SessionHandler.IdAccessKey)))
+                            if (!SessionHandler.IsLogin(Context.Session))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold text-white" asp-controller="" asp-action="">TODO: ログイン</a>
