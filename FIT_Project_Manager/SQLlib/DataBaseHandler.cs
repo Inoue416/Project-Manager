@@ -141,25 +141,26 @@ public class DataBaseHandler
     public async Task<ResponseRecordData> GetTodayRecordDataAsync(int user_id)
     {
         ResponseRecordData response = new ResponseRecordData();
-        List<RecordData>? recordData = new List<RecordData>();
-        string cmd = """
-            SELECT 
-                id, title, content
-            FROM record
-            WHERE id IN (
-                SELECT * FROM record_has
-                WHERE (record_has.user_id = ($1)
-            )
-            AND
-            to_char(record_has.created_at, 'YYYY-mm-dd')
-            =
-            to_char(now(), 'YYYY-mm-dd');
-        """;
+        List<RecordData> recordData = new List<RecordData>();
+        string cmd = "SELECT * FROM record WHERE id in (SELECT record_id FROM record_has WHERE user_id = ($1)) AND to_char(now(), 'YYYY-mm-dd') = to_char(created_at, 'YYYY-mm-dd')";
+        // string cmd = """
+        //     SELECT 
+        //         id, title, content
+        //     FROM record
+        //     WHERE id IN (
+        //         SELECT record_id FROM record_has
+        //         WHERE (user_id = ($1))
+        //     )
+        //     AND
+        //     to_char(record_has.created_at, 'YYYY-mm-dd')
+        //     =
+        //     to_char(now(), 'YYYY-mm-dd')
+        // """;
         if (!await ConnectionDatabaseAsync())
         {
             response.Flag = false;
             response.Message = "Cannot connected DB.";
-            response.RecordData = null;
+            response.RecordData = recordData;
             CloseDatabaseAsync();
             return response;
         }
@@ -172,25 +173,24 @@ public class DataBaseHandler
                     new() { Value = user_id },
                 }
             };
+            int depth = 0;
+            int field = 0;
             using (var reader = await command.ExecuteReaderAsync())
             {
-                if (reader.Depth == 0)
+                field = reader.FieldCount;
+
+                depth = reader.Depth;
+                field = reader.FieldCount;
+                while(await reader.ReadAsync())
                 {
-                    recordData = null;
-                }
-                else
-                {
-                    while(await reader.ReadAsync())
-                    {
-                        RecordData today_data = new RecordData();
-                        today_data.Id = reader.GetInt32(0);
-                        today_data.Title = reader.GetString(1);
-                        today_data.Content = reader.GetString(2);
-                        recordData.Add(today_data);
-                    }
+                    RecordData today_data = new RecordData();
+                    today_data.Id = reader.GetInt32(0);
+                    today_data.Title = reader.GetString(1);
+                    today_data.Content = reader.GetString(2);
+                    recordData.Add(today_data);
                 }
             }
-            response.Message = "Success Select.";
+            response.Message = $"Success Select {field}.";
             response.Flag = true;
             response.RecordData = recordData;
         }
@@ -198,7 +198,7 @@ public class DataBaseHandler
         {
             response.Message = "Error Select.";
             response.Flag = false;
-            response.RecordData = null;
+            response.RecordData = recordData;
         }
         return response;
     }

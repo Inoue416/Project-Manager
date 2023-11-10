@@ -30,12 +30,22 @@ public class HomeController : Controller
                 )
             );
             view_model.RecordData = response.RecordData;
+            if (view_model.RecordData.Count == 0)
+            {
+                Console.WriteLine("Have not...");
+            }
+            else
+            {
+                // Console.WriteLine(view_model.RecordData[0].Title);
+            }
+            Console.WriteLine(response.Message);
         }
         else
         {
             view_model.RecordData = null;
         }
         Console.WriteLine($"view model: {view_model.RecordData}");
+       
         return View("./Views/Home/Index.cshtml", view_model);
     }
 
@@ -46,7 +56,7 @@ public class HomeController : Controller
         string usernameKey = SessionHandler.NameAccessKey;
         if (string.IsNullOrEmpty(SessionHandler.Get(HttpContext.Session, userIdKey)))
         {
-            SessionHandler.Set(HttpContext.Session, userIdKey, "1");
+            SessionHandler.Set(HttpContext.Session, userIdKey, "2");
             SessionHandler.Set(HttpContext.Session, usernameKey, "井上優也");
         }
         Console.WriteLine($"UserID: {SessionHandler.Get(HttpContext.Session, userIdKey)}");

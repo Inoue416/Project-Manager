@@ -14,15 +14,22 @@
             <h1 class="display-4">
                 Welcome @SessionHandler.Get(Context.Session, SessionHandler.NameAccessKey)
             </h1>
-            @* foreach(var rd in Model.RecordData)
+            if (Model.RecordData.Count > 0)
             {
-                <div class="mb-3">
-                    <h1>[タイトル]</h1>
-                    <div><p>rd.Title</p></div>
-                    <h1>[内容]</h1>
-                    <div><p>rd.Content</p></div>
-                </div>
-            } *@
+                foreach(var rd in Model.RecordData)
+                {
+                    <div class="mb-3">
+                        <h1>[タイトル]</h1>
+                        <div><p>@rd.Title</p></div>
+                        <h1>[内容]</h1>
+                        <div><p>@rd.Content</p></div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div><h1>プロジェクトを進めて記録しよう！</h1></div>
+            }
         }
     }
 </div>
