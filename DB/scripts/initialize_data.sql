@@ -10,11 +10,13 @@ INSERT INTO users(name, user_kind) VALUES (
 INSERT INTO users(name, user_kind) VALUES (
     '田中こうた', 0);
 
-INSERT INTO record(title, content, content_kind) VALUES (
+INSERT INTO record(title, content, content_kind, created_at, updated_at) VALUES (
     '今日の進捗 - 2023/11/05',
     ' 今日の進捗としてはまずDocker compose upでビルドしてコンテナを起動する際に、\
     SQLスクリプトを起動する方法を学んだ。\n',
-    0);
+    0,
+    '2023-11-05 15:52:01.029302+09',
+    '2023-11-05 15:52:01.029302+09');
 
 INSERT INTO record_has(user_id, record_id) VALUES(
     1, 1);

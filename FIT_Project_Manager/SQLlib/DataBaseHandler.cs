@@ -143,25 +143,18 @@ public class DataBaseHandler
         ResponseRecordData response = new ResponseRecordData();
         List<RecordData>? recordData = new List<RecordData>();
         string cmd = """
-            SELECT * id, title, content
+            SELECT 
+                id, title, content
             FROM record
-            WHERE id == 1;
+            WHERE id IN (
+                SELECT * FROM record_has
+                WHERE (record_has.user_id = ($1)
+            )
+            AND
+            to_char(record_has.created_at, 'YYYY-mm-dd')
+            =
+            to_char(now(), 'YYYY-mm-dd');
         """;
-        // string cmd = """
-        //     SELECT 
-        //         id, title, content
-        //     FROM record
-        //     WHERE record.id IN (
-        //         SELECT * FROM record_has
-        //         WHERE (
-        //             record_has.user_id == ($1)
-        //             AND
-        //             DATE_FORMAT(record_has.created_at, '%Y-%m-%d')
-        //             ==
-        //             DATE_FORMAT(now(), '%Y-%m-%d');
-        //         )
-        //     );
-        // """;
         if (!await ConnectionDatabaseAsync())
         {
             response.Flag = false;
@@ -172,13 +165,13 @@ public class DataBaseHandler
         }
         try
         {
-            await using var command = new NpgsqlCommand(cmd, this.connection);
-            // {
-            //     Parameters = 
-            //     {
-            //         new() { Value = user_id },
-            //     }
-            // };
+            await using var command = new NpgsqlCommand(cmd, this.connection)
+            {
+                Parameters = 
+                {
+                    new() { Value = user_id },
+                }
+            };
             using (var reader = await command.ExecuteReaderAsync())
             {
                 if (reader.Depth == 0)
