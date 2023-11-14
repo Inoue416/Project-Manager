@@ -3,7 +3,7 @@
 }
 @model FIT_Project_Manager.Models.HomeViewModel
 @using FIT_Project_Manager.Sessionlib
-<div class="text-center">
+<div>
     @{
         if (!SessionHandler.IsLogin(Context.Session))
         {
@@ -11,25 +11,49 @@
         }
         else
         {
-            <h1 class="display-4">
-                Welcome @SessionHandler.Get(Context.Session, SessionHandler.NameAccessKey)
-            </h1>
+            <div class="fs-3 text-end">
+                Name: @SessionHandler.Get(Context.Session, SessionHandler.NameAccessKey)
+            </div>
             if (Model.RecordData.Count > 0)
             {
-                foreach(var rd in Model.RecordData)
+                for(int i = 0; i < Model.RecordData.Count; i++)
                 {
-                    <div class="mb-3">
-                        <h1>[タイトル]</h1>
-                        <div><p>@rd.Title</p></div>
-                        <h1>[内容]</h1>
-                        <div><p>@rd.Content</p></div>
+                    string component_class = "mb-3 home-record-area";// +i.ToString();
+                    @* if (i > 0) { component_class += " hidden-component"; } *@
+                    <div class="@component_class">
+                        <h1 class="text-start">[タイトル]</h1>
+                        <div class="mb-3 text-start fs-3"><u>・ @Model.RecordData[i].Title</u></div>
+                        <h1 class="text-start">[内容]</h1>
+                        <div class="note">
+                            <p class="text-start">@Model.RecordData[i].Content</p>
+                        </div>
                     </div>
                 }
+
+                <div class="page-count-area m-2 fs-4">
+                    <span class="target-page-number"></span> / <span class="max-page-number"></span>
+                </div>
+                
+                <div class="btn-toolbar bt-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-3" role="group" aria-label="Prev group">
+                        <a class="circle_btn_prev">
+                            <div class="circle_btn_prev_arrow"><span>&lt;</span></div>
+                        </a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Next group">
+                        <a class="circle_btn_next">
+                            <div class="circle_btn_next_arrow"><span>&gt;</span></div>
+                        </a>
+                    </div>
+                </div>
             }
             else
             {
-                <div><h1>プロジェクトを進めて記録しよう！</h1></div>
+                <h1 class="text-center mt-5">プロジェクトを進めて記録しよう！</h1>
             }
         }
     }
 </div>
+@section Scripts {
+    <script type="text/javascript" src="~/js/home.js"></script>
+}

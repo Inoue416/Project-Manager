@@ -19,6 +19,10 @@ public class RecordController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
+        if (!SessionHandler.IsLogin(HttpContext.Session))
+        {
+            return Redirect("/");
+        }
         RecordViewModel view_model = new RecordViewModel()
         { 
             Title = "",
@@ -30,6 +34,10 @@ public class RecordController : Controller
     [HttpPost]
     public async Task<IActionResult> RegisterRecord(RecordViewModel view_model)
     {
+        if (!SessionHandler.IsLogin(HttpContext.Session))
+        {
+            return Redirect("/");
+        }
         // TODO: サニタイズを行う, トランザクションを入れたい
         List<string> values = new List<string>();
         values.Add(view_model.Title);

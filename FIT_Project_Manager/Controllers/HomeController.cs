@@ -32,11 +32,7 @@ public class HomeController : Controller
             view_model.RecordData = response.RecordData;
             if (view_model.RecordData.Count == 0)
             {
-                Console.WriteLine("Have not...");
-            }
-            else
-            {
-                // Console.WriteLine(view_model.RecordData[0].Title);
+                Console.WriteLine("Have not today record.");
             }
             Console.WriteLine(response.Message);
         }
